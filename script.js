@@ -1,27 +1,10 @@
-אני רואה ששלחת שוב את קטע הקוד של ה-script.js המקורי שלך.
+בסדר גמור! אני מבין שאת רוצה את קובץ ה-script.js המלא והעדכני ביותר, כדי לוודא ששום דבר לא חסר.
 
-הקוד הזה הוא, כפי שציינתי קודם, ה-JavaScript הבסיסי שהיה לך.
-
-זה אומר שקובץ ה-script.js שלך עדיין לא מכיל את לוגיקת הבוט המנחה המלאה ואת ההתאמות למסך הפתיחה ולמערכת הצ'אט החדשה.
-
-מה צריך לעשות כעת?
-כדי שהפרויקט יעבוד כפי שאנחנו רוצים, את חייבת להחליף את כל התוכן של קובץ ה-script.js שלך בקוד ה-JavaScript המשולב והמלא שסיפקתי לך בתגובתי הקודמת (זו שפורטה תחת הכותרת "script.js - גרסה משולבת").
-
-הקוד הזה כולל:
-
-ההגדרה של קלאס MathProblemGuidingBot.
-הפונקציות המותאמות startChat() ו-sendMessage() שקוראות ללוגיקה של הבוט.
-הלוגיקה לטיפול במסך הפתיחה ובהצגת מסך הצ'אט.
-הפונקציות postBotMessage ו-postStudentMessage שיוסיפו את ההודעות ל-chat-box החדש.
-אם לא תעדכני את קובץ script.js בגרסה המלאה, הבוט המנחה לא יפעל, ותראי רק את ההתנהגות המקורית של הבועה הבודדת.
-
-אנא, החליפי את כל התוכן של קובץ ה-script.js שלך בקוד הבא (ודאי שהעתקת את כל הקוד מההתחלה ועד הסוף):
+הנה קובץ ה-script.js המלא והשלם שאת צריכה להדביק לקובץ שלך. וודאי שאת מחליפה את כל התוכן הקיים בקובץ ה-script.js שלך בקוד הבא:
 
 JavaScript
 
-// הגדרת קלאס לבוט המנחה
-// כל הקוד של הקלאס MathProblemGuidingBot נשאר זהה למה ששלחתי לך קודם.
-// המקום היחיד ששיניתי בו קלות זה ה-ID של chatBox.
+// הגדרת קלאס לבוט המנחה MathProblemGuidingBot
 class MathProblemGuidingBot {
     constructor() {
         this.guidingQuestions = [
@@ -39,7 +22,8 @@ class MathProblemGuidingBot {
         this.currentProblem = "דוגמה: אבא קנה 5 תפוחים ואמא קנתה 3 תפוחים. כמה תפוחים יש בסך הכל?";
     }
 
-    startConversationLogic() { // שיניתי את שם הפונקציה כדי למנוע התנגשות
+    // פונקציה להתחלת השיחה הראשונית של הבוט
+    startConversationLogic() {
         let welcomeMessage = "שלום! אני כאן כדי לעזור לך לפתור בעיות מתמטיות.";
         welcomeMessage += "<br>אני לא אגלה לך את התשובות, אלא אנחה אותך לחשוב בעצמך.";
         welcomeMessage += "<br>זכור, ההבנה, הדרך והחשיבה – ולא רק התשובה – הם ליבת הלמידה.";
@@ -54,6 +38,7 @@ class MathProblemGuidingBot {
         }, 1500);
     }
 
+    // פונקציה לשאילת שאלות מנחות מהרשימה
     askGuidingQuestion() {
         if (this.currentQuestionIndex < this.guidingQuestions.length) {
             this.postBotMessage(this.guidingQuestions[this.currentQuestionIndex]);
@@ -67,12 +52,14 @@ class MathProblemGuidingBot {
         }
     }
 
+    // פונקציה לבקשת צעד ראשון בתרגום הבעיה
     askForFirstStepInTranslation() {
         this.postBotMessage("איך היית מתחיל/ה לתרגם את הבעיה הזו למספרים ופעולות חשבון?");
         this.postBotMessage("מה הדבר הראשון שהיית כותב/ת או מחשב/ת?");
     }
 
-    handleStudentInputLogic(userInput) { // שיניתי את שם הפונקציה כדי למנוע התנגשות
+    // פונקציה לטיפול בקלט מהתלמיד ולמתן תגובה
+    handleStudentInputLogic(userInput) {
         let botResponse = "";
         let nextAction = null;
 
@@ -130,65 +117,81 @@ class MathProblemGuidingBot {
         }
     }
 
-    // שינוי כאן: אנו משתמשים ב-id="chat-box" (כפי שהומלץ ל-HTML המעודכן)
-    // אם את רוצה להישאר עם id="chatBubble", נצטרך להתאים כאן.
+    // פונקציה להצגת הודעת בוט בתיבת הצ'אט
     postBotMessage(message) {
-        const chatBox = document.getElementById('chat-box'); // שימו לב: ID זה חייב להיות קיים ב-HTML
+        const chatBox = document.getElementById('chat-box');
         const botMessageDiv = document.createElement('div');
-        botMessageDiv.classList.add('message', 'bot-message'); // CSS classes
+        botMessageDiv.classList.add('message', 'bot-message');
         botMessageDiv.innerHTML = message;
         chatBox.appendChild(botMessageDiv);
-        chatBox.scrollTop = chatBox.scrollHeight;
+        chatBox.scrollTop = chatBox.scrollHeight; // גלילה לתחתית הצ'אט
     }
 
+    // פונקציה להצגת הודעת תלמיד בתיבת הצ'אט
     postStudentMessage(message) {
-        const chatBox = document.getElementById('chat-box'); // שימו לב: ID זה חייב להיות קיים ב-HTML
+        const chatBox = document.getElementById('chat-box');
         const studentMessageDiv = document.createElement('div');
-        studentMessageDiv.classList.add('message', 'student-message'); // CSS classes
+        studentMessageDiv.classList.add('message', 'student-message');
         studentMessageDiv.textContent = message;
         chatBox.appendChild(studentMessageDiv);
-        chatBox.scrollTop = chatBox.scrollHeight;
+        chatBox.scrollTop = chatBox.scrollHeight; // גלילה לתחתית הצ'אט
     }
 }
 
-// יצירת מופע של הבוט
+// יצירת מופע (אינסטנס) של הבוט
 const myGuidingBot = new MathProblemGuidingBot();
 
-// הקוד הקיים שלך בקובץ script.js:
+// פונקציה להפעלת הצ'אט (מופעלת בלחיצה על כפתור "שנתחיל?")
 function startChat() {
-    // אנו משתמשים ב-ID החדשים מה-HTML המעודכן
+    // הסתרת מסך הפתיחה והצגת מיכל הצ'אט
     document.getElementById("welcome-screen").style.display = "none";
     document.getElementById("chat-container").style.display = "block";
-    // כאן נתחיל את הלוגיקה של הבוט המנחה
+    // התחלת הלוגיקה של הבוט המנחה
     myGuidingBot.startConversationLogic();
 }
 
+// פונקציה לשליחת הודעה (מופעלת בלחיצה על כפתור השליחה)
 function sendMessage() {
-    const input = document.getElementById("user-input").value; // ID מעודכן
-    // נשתמש ב-postStudentMessage כדי להוסיף את הודעת התלמיד לצ'אט
-    // ולא ב-bubble.innerText כי אנו רוצים צ'אט רב-הודעות.
-    // אבל לפני שנעשה זאת, נוודא שהקלט לא ריק.
+    const userInputElement = document.getElementById("user-input");
+    const input = userInputElement.value;
+
+    // הצגת הודעת התלמיד בתיבת הצ'אט
+    myGuidingBot.postStudentMessage(input); // הוספנו כאן את הצגת הודעת התלמיד
+
     if (!input.trim()) {
-        // אם הקלט ריק, נציג הודעה דרך הבוט עצמו (מוצג ב-chat-box)
         myGuidingBot.postBotMessage("🤔 כתבי שאלה או תגובה כדי שאוכל לעזור.");
         return;
     }
 
-    // כעת, נטפל בקלט המשתמש באמצעות לוגיקת הבוט המנחה
+    // טיפול בקלט המשתמש באמצעות לוגיקת הבוט המנחה
     myGuidingBot.handleStudentInputLogic(input);
-    document.getElementById("user-input").value = ""; // נקה את שדה הקלט
-
-    // נסיר את השורה הזו כי הבוט יציג הודעות משלו
-    // bubble.innerText = "חושבת על זה... 🤓";
-    // נסיר גם את השורה הזו כי הבוט מטפל בתגובה
-    // setTimeout(() => { bubble.innerText = `שאלת: "${input}"\n\n (בהמשך אענה עם GPT 😄)`; }, 1000);
+    userInputElement.value = ""; // ניקוי שדה הקלט
 }
 
-// קוד להפעלה ראשונית אם לא משתמשים בכפתור startChat() ב-HTML
-// נשאר את זה רק למקרה שלא תשתמשו במסך הפתיחה
-/*
+
+// **מאזיני אירועים (Event Listeners) - אלו השורות הקריטיות!**
+// אלו מחברים את כפתורי ה-HTML לפונקציות ה-JavaScript המתאימות.
 document.addEventListener('DOMContentLoaded', () => {
-    // במידה ואין מסך פתיחה, נתחיל את הבוט ישירות
-    // myGuidingBot.startConversationLogic();
+    // מאזין לכפתור "שנתחיל?" במסך הפתיחה
+    const startButton = document.getElementById('start-button');
+    if (startButton) {
+        startButton.addEventListener('click', startChat);
+    }
+
+    // מאזין לכפתור השליחה בתוך מסך הצ'אט
+    const sendButton = document.getElementById('send-button');
+    if (sendButton) {
+        sendButton.addEventListener('click', sendMessage);
+    }
+
+    // אופציונלי: מאזין ללחיצה על Enter בשדה הקלט כדי לשלוח הודעה
+    const userInput = document.getElementById('user-input');
+    if (userInput) {
+        userInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    }
 });
-*/
+
