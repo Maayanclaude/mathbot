@@ -72,3 +72,60 @@ button {
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+/* ... כל הקוד הקיים שלך בקובץ style.css ... */
+
+/* הוספות חדשות עבור מערכת הצ'אט הרב-הודעות */
+
+/* עיצוב כללי לתיבת הצ'אט עצמה */
+#chat-box {
+    /* הסטיילים הבאים הם מה-inline style ששמתי ב-HTML, עדיף להעביר אותם לכאן */
+    min-height: 300px;
+    max-height: 400px;
+    overflow-y: auto; /* מאפשר גלילה כאשר יש יותר מדי הודעות */
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+    display: flex; /* כדי לסדר את הבועות אחת מתחת לשנייה */
+    flex-direction: column; /* לסדר אותן בעמודה */
+    align-items: flex-start; /* יישור לשמאל ב-RTL, לבועות בוט */
+}
+
+/* עיצוב הודעות כלליות (גם של הבוט וגם של התלמיד) */
+.message {
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    max-width: 80%; /* כדי שהבועות לא יהיו רחבות מדי */
+    word-wrap: break-word; /* לשבור מילים ארוכות שלא יגלשו */
+    line-height: 1.4; /* רווח שורות נוח לקריאה */
+}
+
+/* עיצוב ספציפי להודעות הבוט */
+.bot-message {
+    background: #e3e3ff; /* צבע דומה ל-bubble הקיים שלך */
+    color: #333;
+    align-self: flex-start; /* מיישר הודעות בוט לשמאל ב-RTL */
+}
+
+/* עיצוב ספציפי להודעות התלמיד */
+.student-message {
+    background: #d4edda; /* ירוק בהיר כלשהו, ניתן לשנות */
+    color: #333;
+    align-self: flex-end; /* מיישר הודעות תלמיד לימין ב-RTL */
+}
+
+/* עיצוב למיכל הקלט והכפתור בתחתית הצ'אט */
+#input-container {
+    display: flex; /* כדי שהקלט והכפתור יהיו באותה שורה */
+    width: 100%;
+    gap: 10px; /* רווח קטן ביניהם */
+}
+
+#input-container input {
+    flex-grow: 1; /* יתפוס כמה שיותר מקום */
+    margin-bottom: 0; /* נסיר את המרווח התחתון המיותר */
+}
+
+#input-container button {
+    flex-shrink: 0; /* הכפתור לא יתכווץ */
