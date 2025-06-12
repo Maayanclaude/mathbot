@@ -150,7 +150,7 @@ function sendMessage() {
     const input = userInputElement.value;
 
     // הצגת הודעת התלמיד בתיבת הצ'אט
-    myGuidingBot.postStudentMessage(input); // הוספנו כאן את הצגת הודעת התלמיד
+    myGuidingBot.postStudentMessage(input);
 
     if (!input.trim()) {
         myGuidingBot.postBotMessage("🤔 כתבי שאלה או תגובה כדי שאוכל לעזור.");
@@ -188,4 +188,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
