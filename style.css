@@ -129,3 +129,19 @@ button {
 
 #input-container button {
     flex-shrink: 0; /* הכפתור לא יתכווץ */
+.welcome-screen button {
+    /* ... כל הסגנונות הקיימים שלך כאן ... */
+    transition: all 0.2s ease-in-out; /* מעבר חלק לאפקטים של ריחוף/לחיצה */
+}
+
+.welcome-screen button:hover {
+    transform: translateY(-2px); /* מרים את הכפתור מעט למעלה */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3); /* הופך את הצל לבולט יותר */
+    background: linear-gradient(to right, #a7e0c4, #8b7ad1); /* גרדיאנט מעט שונה בריחוף */
+}
+
+.welcome-screen button:active {
+    transform: translateY(1px); /* דוחף את הכפתור כלפי מטה כאילו נלחץ */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15); /* מפחית את הצל כאשר הוא "לחוץ" */
+    background: linear-gradient(to right, #96d1af, #7a68bd); /* גרדיאנט כהה יותר בלחיצה */
+}
