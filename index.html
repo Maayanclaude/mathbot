@@ -1,17 +1,28 @@
 <!DOCTYPE html>
-<html lang="he">
-<head>
-  <meta charset="UTF-8" />
-  <title>Math Sense Bot</title>
-  <link rel="stylesheet" href="style.css" />
+<html lang="he" dir="rtl"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Math Sense Bot</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <img src="avatar.png" alt="Math Bot" class="avatar" />
-    <div id="chatBubble" class="bubble">👋 ברוכה הבאה! כשתרצי לשאול שאלה, אני כאן 😊</div>
-    <input id="userInput" placeholder="שאלי שאלה..." />
-    <button onclick="sendMessage()">שלחי</button>
-  </div>
-  <script src="script.js"></script>
+
+    <div class="welcome-screen" id="welcome-screen">
+        <img src="avatar.png" alt="אווטאר ידידותי" class="avatar"> <h1>שלום! בואו נלמד מתמטיקה.</h1>
+        <button id="start-button">שנתחיל?</button>
+    </div>
+
+    <div class="container" id="chat-container" style="display: none;">
+        <img src="avatar.png" alt="Math Bot" class="avatar">
+
+        <div id="chat-box">
+            </div>
+
+        <div id="input-container">
+            <input type="text" id="user-input" placeholder="כתוב כאן..." />
+            <button id="send-button">שלחי</button>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
 </body>
 </html>
